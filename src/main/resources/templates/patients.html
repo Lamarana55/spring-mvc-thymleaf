@@ -33,6 +33,12 @@
                 </tr>
                 </tbody>
             </table>
+            <ul class="nav nav-pills justify-content-end">
+                <li class="nav-item" th:each="page,status:${pages}">
+                    <a th:class="${status.index==currentPage?'btn btn-primary ms-2':'btn btn-outline-primary ms-2'}"
+                       th:text="${status.index}"  th:href="@{index(page=${status.index})}"> </a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

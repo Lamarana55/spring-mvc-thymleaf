@@ -1,5 +1,6 @@
 package com.lamarana.patient;
 
+import com.github.javafaker.Faker;
 import com.lamarana.patient.Repositories.PatientRepository;
 import com.lamarana.patient.entities.Patient;
 import org.springframework.boot.CommandLineRunner;
@@ -18,10 +19,13 @@ public class PatientApplication {
 
     @Bean
     CommandLineRunner commandLineRunner(PatientRepository patientRepository){
+        Faker faker = new Faker();
         return args -> {
-            patientRepository.save(new Patient(null, "Diallo", "Lamarana", new Date(), false, 10));
-            patientRepository.save(new Patient(null, "Diallo", "Mamadou", new Date(), true, 15));
-            patientRepository.save(new Patient(null, "Sow", "Hassanatou", new Date(), false, 159));
+            patientRepository.save(new Patient(null, faker.name().lastName(), faker.name().firstName(), faker.date().birthday(), faker.bool().bool(), faker.number().randomDigit()));
+            patientRepository.save(new Patient(null, faker.name().lastName(), faker.name().firstName(), faker.date().birthday(), faker.bool().bool(), faker.number().numberBetween(10,100)));
+            patientRepository.save(new Patient(null, faker.name().lastName(), faker.name().firstName(), faker.date().birthday(), faker.bool().bool(), faker.number().randomDigit()));
+            patientRepository.save(new Patient(null, faker.name().lastName(), faker.name().firstName(), faker.date().birthday(), faker.bool().bool(), faker.number().randomDigit()));
+            patientRepository.save(new Patient(null, faker.name().lastName(), faker.name().firstName(), faker.date().birthday(), faker.bool().bool(), faker.number().numberBetween(10,100)));
         };
     }
 
